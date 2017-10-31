@@ -1,4 +1,4 @@
-<style scoped> @import url("./style.css"); </style>
+<link rel="stylesheet" type="text/css" href="./style.css"/>
 # Gøran André Slettemark
 
 ## Subheader
