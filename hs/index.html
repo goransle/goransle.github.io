@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+    <script src="https://code.highcharts.com/modules/datagrouping.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      const chart = Highcharts.chart("container", {
+        chart: {
+          type: "column",
+        },
+        title: {
+          text: "hello",
+        },
+
+        plotOptions: {
+          series: {
+            stacking: true,
+          },
+        },
+        xAxis: {
+          type: "datetime",
+        },
+        yAxis: {
+          type: "datetime",
+        },
+        data: {
+          googleSpreadsheetKey: "1da82Nx3vYm14msH7oYtdYkrXoSSmsU84xlf8EMIofNg",
+          googleSpreadsheetWorksheet: 5, // fane nr 1
+          switchRowsAndColumns: true,
+          complete: function (options) {
+
+            const years = [];
+            options.series.forEach((s) => {
+              const year = s.data[0][1];
+              const name = s.data[0][0];
+              s.data[0][0] = year;
+              s.data[0][1] = 1;
+
+              if (!years.includes(year)) years.push(year);
+
+              s.color = {
+                pattern: {
+                  image: s.data[1][1],
+                  aspectRatio: 9 / 4,
+                  width: 100,
+                  height: 100,
+                },
+              };
+              delete s.data[1];
+            });
+
+            console.log(options);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
