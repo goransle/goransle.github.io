@@ -32,7 +32,7 @@ function bingoData() {
     }
 
     // Sort and convert to matrix
-    returnArray = values.sort((a, b) => a > b).reduce((arr, value, i) => {
+    returnArray = values.reduce((arr, value, i) => {
 
         const currentRow = parseInt(i / height);
         const currentColumn = (i - (currentRow * height));
