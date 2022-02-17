@@ -73,6 +73,8 @@ function togglePoint(point) {
         toggled
     });
 
+    point.series.redraw();
+
     saveState(toggledPoints);
 }
 
